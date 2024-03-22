@@ -10,6 +10,6 @@ body{
 
 .feed{
     display: grid;
-    grid-template-columns: 1fr minmax(400px, 600px) 1fr;
+    grid-template-columns: 1fr minmax(420px, 620px) 1fr;
 }
 
