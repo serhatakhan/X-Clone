@@ -25,7 +25,7 @@ const FeedPage = () => {
   böylelikle state değiştiğinde kullanıcının bilgilerine erişebildik */
 
   return (
-    <section className="feed h-screen bg-black overflow-hidden">
+    <section className="feed bg-black h-screen overflow-y-auto">
       {/* kullanıcının bilgileri bize lazım o yüzden prop olarak yolladık */}
       <Nav user={user} />
       <Main user={user} />

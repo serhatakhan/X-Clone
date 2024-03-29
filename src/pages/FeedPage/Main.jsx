@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import Form from "../../components/Form"
 import Post from "../../components/Post"
-import { collection, onSnapshot } from "firebase/firestore"
+import { collection, onSnapshot, query, orderBy } from "firebase/firestore"
 import { db } from "../../firebase/config"
 import Loader from "../../components/Loader"
 
@@ -14,8 +14,14 @@ const Main = ( {user} ) => {
     // verileri canlı olarak almak için abone olunacak koleksiyonun referansı
     const collectionRef = collection(db, "twits")
 
-    // koleksiyondaki verileri canlı olarak al
-    const unsub = onSnapshot(collectionRef, (snapshot)=> {
+    // * ayarları belirle(tweetlerin düzgün bir sırada gelmesi için. son tweet en üstte olmalı)
+    // hangi değere göre sıralansını belirledik "createdAt" ile
+    // * azalan istediğimiz için "desc" seçtik. 
+    // * son olarak hemen aşağıdaki onSnapshot içine bu q'yu veriyoruz.
+    const q = query(collectionRef, orderBy("createdAt", "desc"))
+
+    // koleksiyondaki verileri CANLI olarak al
+    const unsub = onSnapshot(q, (snapshot)=> {
 
       // chat-app deki gibi dizi oluştur
       const tempTweets = []
