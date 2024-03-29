@@ -1,7 +1,7 @@
 import { FiEdit2 } from "react-icons/fi";
 import { FaTrashAlt } from "react-icons/fa";
 
-const Dropdown = ( {handleDelete} ) => {
+const Dropdown = ({ handleDelete, handleEdit }) => {
   return (
     <label className="popup">
       <input type="checkbox" />
@@ -14,7 +14,7 @@ const Dropdown = ( {handleDelete} ) => {
         <legend>Actions</legend>
         <ul>
           <li>
-            <button>
+            <button onClick={handleEdit}>
               <FiEdit2 />
               <span>Düzenle</span>
             </button>

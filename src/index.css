@@ -13,8 +13,18 @@ body{
     grid-template-columns: 1fr minmax(420px, 620px) 1fr;
 }
 
-/* The design is inspired from the mockapi.io */
 
+/* scroll olan tüm alanlar için yaptık */
+*::-webkit-scrollbar{
+  background: transparent;
+  width: 6px;
+}
+*::-webkit-scrollbar-thumb{
+  background: #5f5f5f;
+}
+
+
+/* dropdown*/
 .popup {
     --burger-line-width: 1.125em;
     --burger-line-height: 0.125em;
@@ -43,7 +53,7 @@ body{
     --nav-font-family: Menlo, Roboto Mono, monospace;
     --nav-default-scale: .8;
     --nav-active-scale: 1;
-    --nav-position-left: -70px;
+    --nav-position-left: -83px;
     --nav-position-right: unset;
     /* if you want to change sides just switch one property */
     /* from properties to "unset" and the other to 0 */

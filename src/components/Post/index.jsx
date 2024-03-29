@@ -5,14 +5,19 @@ import { auth, db } from './../../firebase/config';
 import Dropdown from "./Dropdown";
 import { deleteDoc, doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
 import { toast } from "react-toastify";
+import { useState } from 'react';
+import EditMode from "./EditMode";
+import Content from "./Content";
 
 const Post = ({ tweet }) => {
-  console.log(tweet)
   // tarihin günümüze göre kıyasını al
   const date = moment(tweet?.createdAt?.toDate()).fromNow();
 
   // oturumu açık olan kullanıcı tweet'in like dizisinde var mı?
   const isLiked = tweet.like.includes(auth.currentUser.uid)
+
+  // kullanıcı düzenleme modunda mı?
+  const [isEditMode, setIsEditMode] = useState(false)
 
 
   //console.log(auth.currentUser.uid)  // oturumu açık olan kullanıcının id'si
@@ -66,13 +71,13 @@ const Post = ({ tweet }) => {
           </div>
         
           {/* oturumu açan kullanıcı ile tweeti atan kullanıcı aynı ise düzenleme yapabilsin. yoksa herkes her tweeti düzenleyebiliyor. böyle olmamalı. */}
-          {tweet.user.id === auth.currentUser.uid && <Dropdown handleDelete={handleDelete} /> }
+          {tweet.user.id === auth.currentUser.uid && <Dropdown handleDelete={handleDelete} handleEdit={()=> setIsEditMode(true)} /> }
         </div>
 
         {/* orta kısım */}
         <div className="my-6">
-          {tweet.textContent && <p>{tweet.textContent}</p> }
-          {tweet.imageContent && <img src={tweet.imageContent} className="max-h-[400px] object-cover rounded-md w-full my-[10px]" alt="tweet-img" /> }
+          {isEditMode ? <EditMode tweet={tweet} close={()=> setIsEditMode(false)} /> : <Content tweet={tweet} /> }
+          {/* close isminde düzenle modundan çıkmaya yarayan fonk. yazıp prop olarak yolladık. */}
         </div>
 
         {/* alt kısım */}
