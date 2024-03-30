@@ -34,6 +34,7 @@ This project is a X clone social media platform developed with React and **Fireb
 
 ## Screen Gif
 
+![Kayt2024-03-30121640-ezgif com-video-to-gif-converter](https://github.com/serhatakhan/X-Clone/assets/147662915/cfc60886-6090-4d4f-8019-a84d5e37b495)
 
 
 
